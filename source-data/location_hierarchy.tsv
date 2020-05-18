@@ -1,0 +1,596 @@
+region	country	division
+Africa	Algeria	Blida
+Africa	Algeria	Boufarik
+Africa	Democratic Republic of the Congo	Democratic Republic of the Congo
+Africa	Democratic Republic of the Congo	Kinshasa
+Africa	Democratic Republic of the Congo	Sud Kivu
+Africa	Egypt	Egypt
+Africa	Egypt	Nile River Cruise
+Africa	Gambia	West Coast Region
+Africa	Ghana	Greater Accra
+Africa	Nigeria	Lagos
+Africa	Senegal	Dakar
+Africa	Senegal	Mbour
+Africa	Senegal	St-Louis
+Africa	Senegal	Thies
+Africa	Senegal	Touba
+Africa	South Africa	Eastern Cape
+Africa	South Africa	GP
+Africa	South Africa	Gauteng
+Africa	South Africa	KZN
+Africa	South Africa	KwaZulu-Natal
+Africa	South Africa	LP
+Africa	South Africa	MP
+Africa	South Africa	Unknown
+Asia	Asia	Asia
+Asia	Bangladesh	Bangladesh
+Asia	Bangladesh	Chattogram
+Asia	Bangladesh	Dhaka
+Asia	Brunei	Brunei
+Asia	Cambodia	Sihanoukville
+Asia	China	Anhui
+Asia	China	Beijing
+Asia	China	China
+Asia	China	Chongqing
+Asia	China	Fujian
+Asia	China	Guangdong
+Asia	China	Guangxi
+Asia	China	Henan
+Asia	China	Hubei
+Asia	China	Iran
+Asia	China	Jiangsu
+Asia	China	Jiangxi
+Asia	China	New South Wales
+Asia	China	Shandong
+Asia	China	Shanghai
+Asia	China	Sichuan
+Asia	China	Wuhan
+Asia	China	Yunnan
+Asia	China	Zhejiang
+Asia	Georgia	Tbilisi
+Asia	Hong Kong	Hong Kong
+Asia	India	Andhra Pradesh
+Asia	India	Assam
+Asia	India	Bihar
+Asia	India	Delhi
+Asia	India	Gujarat
+Asia	India	Haryana
+Asia	India	India
+Asia	India	Jammu
+Asia	India	Kargil
+Asia	India	Karnataka
+Asia	India	Kerala
+Asia	India	Ladakh
+Asia	India	Madhya Pradesh
+Asia	India	Maharashtra
+Asia	India	Mumbai
+Asia	India	Odisha
+Asia	India	Punjab
+Asia	India	Rajsathan
+Asia	India	Tamil Nadu
+Asia	India	Telangana
+Asia	India	Uttar Pradesh
+Asia	India	West Bengal
+Asia	Indonesia	Indonesia
+Asia	Indonesia	Jakarta
+Asia	Indonesia	Surabaya
+Asia	Iran	Iran
+Asia	Iran	Semnan
+Asia	Iran	Tehran
+Asia	Israel	Israel
+Asia	Israel	Jerusalem District
+Asia	Israel	North District
+Asia	Israel	Ramat Gan
+Asia	Israel	South Coast District
+Asia	Israel	South District
+Asia	Israel	Tel Aviv District
+Asia	Japan	Aichi
+Asia	Japan	Chiba
+Asia	Japan	Diamond Princess
+Asia	Japan	Ishikawa
+Asia	Japan	Japan
+Asia	Japan	Kanagawa
+Asia	Japan	Kanto
+Asia	Japan	Kochi
+Asia	Japan	Kyoto
+Asia	Japan	Nara
+Asia	Japan	Osaka
+Asia	Japan	Saitama
+Asia	Japan	Tokyo
+Asia	Jordan	Amman
+Asia	Jordan	Irbid
+Asia	Kazakhstan	Nur-Sultan
+Asia	Kuwait	Kuwait
+Asia	Kyrgyzstan	Kyrgyzstan
+Asia	Malaysia	Kuala Lumpur
+Asia	Malaysia	Malaysia
+Asia	Malaysia	Selangor
+Asia	Myanmar	Myanmar
+Asia	Nepal	Kathmandu
+Asia	Nepal	Nepal
+Asia	Pakistan	Gilgit Baltistan
+Asia	Pakistan	Khyber Pakhtunkhwa
+Asia	Philippines	Manila
+Asia	Philippines	Philippines
+Asia	Qatar	Doha
+Asia	Saudi Arabia	Jeddah
+Asia	Saudi Arabia	Madinah
+Asia	Saudi Arabia	Makkah
+Asia	Saudi Arabia	Riyadh
+Asia	Saudi Arabia	Saudi Arabia
+Asia	Singapore	Singapore
+Asia	South Korea	Chungcheongnam
+Asia	South Korea	Gyeonggi
+Asia	South Korea	Seoul
+Asia	South Korea	South Korea
+Asia	Sri Lanka	Sri Lanka
+Asia	Taiwan	Keelung
+Asia	Taiwan	New Taipei City
+Asia	Taiwan	New Taipei city
+Asia	Taiwan	Taiwan
+Asia	Thailand	Bangkok
+Asia	Thailand	Nonthaburi
+Asia	Thailand	Pathum Thani
+Asia	Thailand	Phuket
+Asia	Thailand	Samut Prakarn
+Asia	Thailand	Thailand
+Asia	Turkey	Turkey
+Asia	United Arab Emirates	United Arab Emirates
+Asia	Vietnam	Ho Chi Minh City
+Asia	Vietnam	Quangning
+Asia	Vietnam	Red River Delta
+Asia	Vietnam	Thanh Hoa
+Asia	Vietnam	Vietnam
+Asia	Vietnam	Vinhphuc
+Europe	Austria	Austria
+Europe	Austria	Burgenland
+Europe	Austria	Italian cruise ship
+Europe	Austria	Salzburg
+Europe	Austria	Styria
+Europe	Austria	Tyrol
+Europe	Austria	Vienna
+Europe	Belarus	Belarus
+Europe	Belgium	Alken
+Europe	Belgium	Andenne
+Europe	Belgium	Anderlecht
+Europe	Belgium	Antwerp
+Europe	Belgium	Asse
+Europe	Belgium	Ath
+Europe	Belgium	Beersel
+Europe	Belgium	Belgium
+Europe	Belgium	Beringen
+Europe	Belgium	Berloz
+Europe	Belgium	Bierbeek
+Europe	Belgium	Blegny
+Europe	Belgium	Bonheiden
+Europe	Belgium	Boussu
+Europe	Belgium	Boutersem
+Europe	Belgium	Braine-l alleud
+Europe	Belgium	Bree
+Europe	Belgium	Brussels
+Europe	Belgium	Chaineux
+Europe	Belgium	Charleroi
+Europe	Belgium	Colfontaine
+Europe	Belgium	Courcelles
+Europe	Belgium	Couthuin
+Europe	Belgium	Couvin
+Europe	Belgium	Dalhem
+Europe	Belgium	Deinze
+Europe	Belgium	Dendermonde
+Europe	Belgium	Dilbeek
+Europe	Belgium	Doornik
+Europe	Belgium	Ellezelles
+Europe	Belgium	Elsene
+Europe	Belgium	Estinnes
+Europe	Belgium	Etterbeek
+Europe	Belgium	Eupen
+Europe	Belgium	Flanders
+Europe	Belgium	Fontaine-l Eveque
+Europe	Belgium	Frameries
+Europe	Belgium	Ganshoren
+Europe	Belgium	Genappe
+Europe	Belgium	Gent
+Europe	Belgium	Geraardsbergen
+Europe	Belgium	Ghent
+Europe	Belgium	Gierle
+Europe	Belgium	Grimbergen
+Europe	Belgium	Hasselt
+Europe	Belgium	Havelange
+Europe	Belgium	Hemiksem
+Europe	Belgium	Henri-chapelle
+Europe	Belgium	Herent
+Europe	Belgium	Herselt
+Europe	Belgium	Herstal
+Europe	Belgium	Herve
+Europe	Belgium	Hoegaarden
+Europe	Belgium	Holsbeek
+Europe	Belgium	Honnelles
+Europe	Belgium	Houthalen-Helchteren
+Europe	Belgium	Huldenberg
+Europe	Belgium	Kalmthout
+Europe	Belgium	Kasterlee
+Europe	Belgium	Kaulile
+Europe	Belgium	Kessel-Lo
+Europe	Belgium	Knokke-Heist
+Europe	Belgium	Komen
+Europe	Belgium	Kraainem
+Europe	Belgium	La Louviere
+Europe	Belgium	Lanaken
+Europe	Belgium	Lasne
+Europe	Belgium	Leuven
+Europe	Belgium	Limburg
+Europe	Belgium	Linter
+Europe	Belgium	Liège
+Europe	Belgium	Lubbeek
+Europe	Belgium	Lummen
+Europe	Belgium	Merelbeke
+Europe	Belgium	Mons
+Europe	Belgium	Montigny-le-Tilleul
+Europe	Belgium	Mouscron
+Europe	Belgium	Namur
+Europe	Belgium	Nevele
+Europe	Belgium	Nieuwerkerken
+Europe	Belgium	Oevel
+Europe	Belgium	Oostrozebeke
+Europe	Belgium	Oudergem
+Europe	Belgium	Pelt
+Europe	Belgium	Quaregnon
+Europe	Belgium	Quevy
+Europe	Belgium	Ravels
+Europe	Belgium	Riemst
+Europe	Belgium	Rixensart
+Europe	Belgium	Ronse
+Europe	Belgium	Saint-Ghislain
+Europe	Belgium	Schoten
+Europe	Belgium	Seraing
+Europe	Belgium	Silly
+Europe	Belgium	Sint-Agatha-Berchem
+Europe	Belgium	Sint-Genesius-Rode
+Europe	Belgium	Sint-Gillis-Waas
+Europe	Belgium	Sint-Niklaas
+Europe	Belgium	Sint-Pieters-Woluwe
+Europe	Belgium	Sint-Truiden
+Europe	Belgium	Soignies
+Europe	Belgium	Soumagne
+Europe	Belgium	Stekene
+Europe	Belgium	Tervuren
+Europe	Belgium	Theux
+Europe	Belgium	Tielt-Winge
+Europe	Belgium	Tienen
+Europe	Belgium	Tournai
+Europe	Belgium	Tubize
+Europe	Belgium	Ukkel
+Europe	Belgium	Vilvoorde
+Europe	Belgium	Vorst
+Europe	Belgium	Waasmunster
+Europe	Belgium	Walloon Brabant
+Europe	Belgium	Wanze
+Europe	Belgium	Waterloo
+Europe	Belgium	Watermaal-Bosvoorde
+Europe	Belgium	Wervik
+Europe	Belgium	Wevelgem
+Europe	Belgium	Zinnik
+Europe	Belgium	Zolder
+Europe	Belgium	Zonhoven
+Europe	Belgium	Zoutleeuw
+Europe	Croatia	Croatia
+Europe	Croatia	Istria
+Europe	Czech Republic	Czech Republic
+Europe	Czech Republic	Prague
+Europe	Czech Republic	Usti nad Labem
+Europe	Czech Republic	Vysocina Region
+Europe	Denmark	Copenhagen
+Europe	Denmark	Denmark
+Europe	Estonia	Estonia
+Europe	Europe	Europe
+Europe	Finland	Finland
+Europe	Finland	Helsinki
+Europe	France	Auvergne Rhone Alpes
+Europe	France	Auvergne-Rhône-Alpes
+Europe	France	Bourgogne
+Europe	France	Bourgogne-France-Comté
+Europe	France	Bretagne
+Europe	France	Centre-Val de Loire
+Europe	France	France
+Europe	France	Grand Est
+Europe	France	Hauts de France
+Europe	France	Hubei
+Europe	France	Ile de France
+Europe	France	Normandie
+Europe	France	Occitanie
+Europe	France	Pays de la Loire
+Europe	France	Toulouse
+Europe	Georgia	Tbilisi
+Europe	Germany	Baden-Wuerttemberg
+Europe	Germany	Bavaria
+Europe	Germany	Germany
+Europe	Germany	North Rhine Westphalia
+Europe	Greece	Athens
+Europe	Hungary	Balassagyarmat
+Europe	Hungary	Balatonfured
+Europe	Hungary	Baranya
+Europe	Hungary	Bekesszentandras
+Europe	Hungary	Central Hungary
+Europe	Hungary	Kecskemet
+Europe	Hungary	Oroshaza
+Europe	Hungary	Szeged
+Europe	Iceland	Reykjavik
+Europe	Ireland	Cork
+Europe	Ireland	Dublin
+Europe	Ireland	Ireland
+Europe	Ireland	Limerick
+Europe	Ireland	Louth
+Europe	Ireland	Tipperary
+Europe	Ireland	Wicklow
+Europe	Italy	Abruzzo
+Europe	Italy	Castel di Sangro
+Europe	Italy	Friuli Venezia Giulia
+Europe	Italy	India
+Europe	Italy	Italian cruise ship
+Europe	Italy	Italy
+Europe	Italy	Lazio
+Europe	Italy	Lombardy
+Europe	Italy	Marche
+Europe	Italy	South Tyrol
+Europe	Italy	Tyrol
+Europe	Italy	Veneto
+Europe	Latvia	Latvia
+Europe	Latvia	Riga
+Europe	Lithuania	Vilnius
+Europe	Luxembourg	Luxembourg
+Europe	Netherlands	Drenthe
+Europe	Netherlands	Flevoland
+Europe	Netherlands	Friesland
+Europe	Netherlands	Gelderland
+Europe	Netherlands	Limburg
+Europe	Netherlands	Milheeze
+Europe	Netherlands	Netherlands
+Europe	Netherlands	North Brabant
+Europe	Netherlands	North Holland
+Europe	Netherlands	Overijssel
+Europe	Netherlands	South Holland
+Europe	Netherlands	Utrecht
+Europe	Norway	Norway
+Europe	Norway	Oslo
+Europe	Norway	Trondheim
+Europe	Poland	Dolnoslaskie
+Europe	Poland	Malopolskie
+Europe	Poland	Poland
+Europe	Poland	Pomorskie
+Europe	Poland	Wielkopolskie
+Europe	Poland	Zielonogorskie
+Europe	Portugal	Lisbon
+Europe	Portugal	Portugal
+Europe	Romania	Bucharest
+Europe	Romania	Constanta
+Europe	Russia	Buryat Republic
+Europe	Russia	Chechen Republic
+Europe	Russia	Chelyabinsk Region
+Europe	Russia	Khabarovsk Region
+Europe	Russia	Krasnodar Region
+Europe	Russia	Krasnoyarsk Region
+Europe	Russia	Leningrad region
+Europe	Russia	Lipetsk Region
+Europe	Russia	Moscow
+Europe	Russia	Moscow Region
+Europe	Russia	Novosibirsk Region
+Europe	Russia	Omsk Region
+Europe	Russia	Orenburg Region
+Europe	Russia	Perm Region
+Europe	Russia	Primorskiy Region
+Europe	Russia	Pskov Region
+Europe	Russia	Republic of Buryatia
+Europe	Russia	Republic of Crymea
+Europe	Russia	Republic of Kabardino-Balkaria
+Europe	Russia	Republic of Sakha
+Europe	Russia	Saint-Petersburg
+Europe	Russia	Sakhalin Region
+Europe	Russia	Samara Region
+Europe	Russia	Sverdlovsk Region
+Europe	Russia	Tatarstan
+Europe	Russia	Tver Region
+Europe	Serbia	Kraljevo
+Europe	Serbia	Novi Pazar
+Europe	Slovakia	Bratislava
+Europe	Slovakia	Kosice
+Europe	Slovakia	Kostoliste
+Europe	Slovakia	Martin
+Europe	Slovenia	Slovenia
+Europe	Spain	Andalusia
+Europe	Spain	Barcelona
+Europe	Spain	Basque Country
+Europe	Spain	Canary Islands
+Europe	Spain	Castilla La Mancha
+Europe	Spain	Castilla y Leon
+Europe	Spain	Catalonia
+Europe	Spain	Catalunya
+Europe	Spain	Comunitat Valenciana
+Europe	Spain	Galicia
+Europe	Spain	Grand Canary Islands
+Europe	Spain	La Rioja
+Europe	Spain	Madrid
+Europe	Spain	Spain
+Europe	Sweden	Dalarna
+Europe	Sweden	Gavleborgs lan
+Europe	Sweden	Halland
+Europe	Sweden	Jamtland
+Europe	Sweden	Norrbotten
+Europe	Sweden	Orebro lan
+Europe	Sweden	Ostergotland
+Europe	Sweden	Skane
+Europe	Sweden	Småland
+Europe	Sweden	Sormland
+Europe	Sweden	Stockholm
+Europe	Sweden	Uppsala
+Europe	Sweden	Varmland
+Europe	Sweden	Vasterbotten
+Europe	Sweden	Vastmanland
+Europe	Sweden	Vastra Gotaland
+Europe	Switzerland	Aargau
+Europe	Switzerland	Basel
+Europe	Switzerland	Basel-Stadt
+Europe	Switzerland	Bern
+Europe	Switzerland	Geneva
+Europe	Switzerland	Graubünden
+Europe	Switzerland	Lucerne
+Europe	Switzerland	Schwyz
+Europe	Switzerland	Switzerland
+Europe	Switzerland	Ticino
+Europe	Switzerland	Vaud
+Europe	Switzerland	Zurich
+Europe	Turkey	Adıyaman
+Europe	Turkey	Afyon
+Europe	Turkey	Agri
+Europe	Turkey	Aksaray
+Europe	Turkey	Ankara
+Europe	Turkey	Balikesir
+Europe	Turkey	Canakkale
+Europe	Turkey	Denizli
+Europe	Turkey	Eskisehir
+Europe	Turkey	Istanbul
+Europe	Turkey	Karaman
+Europe	Turkey	Kastamonu
+Europe	Turkey	Kayseri
+Europe	Turkey	Kocaeli
+Europe	Turkey	Konya
+Europe	Turkey	Mardin
+Europe	Turkey	Nevsehir
+Europe	Turkey	Sakarya
+Europe	Turkey	Siirt
+Europe	Turkey	Tekirdag
+Europe	Turkey	Tokat
+Europe	Turkey	Turkey
+Europe	United Kingdom	England
+Europe	United Kingdom	Faroe Islands
+Europe	United Kingdom	Northern Ireland
+Europe	United Kingdom	Scotland
+Europe	United Kingdom	United Kingdom
+Europe	United Kingdom	Wales
+North America	Canada	14-Lanaudière
+North America	Canada	16-Montérégie
+North America	Canada	British Columbia
+North America	Canada	Manitoba
+North America	Canada	New Brunswick
+North America	Canada	Newfoundland and Labrador
+North America	Canada	Nova Scotia
+North America	Canada	Ontario
+North America	Canada	Quebec
+North America	Canada	Saskatchewan
+North America	Costa Rica	La Union
+North America	Costa Rica	Orotina
+North America	Costa Rica	San Rafael
+North America	Costa Rica	Tibas
+North America	Mexico	Chiapas
+North America	Mexico	Chihuahua
+North America	Mexico	Estado de Mexico
+North America	Mexico	Mexico
+North America	Mexico	Mexico City
+North America	Mexico	Puebla
+North America	Mexico	Queretaro
+North America	Panama	Panama City
+North America	USA	Alaska
+North America	USA	Arizona
+North America	USA	California
+North America	USA	Connecticut
+North America	USA	Diamond Princess
+North America	USA	Florida
+North America	USA	Georgia
+North America	USA	Grand Princess
+North America	USA	Grand Princess 2nd cruise
+North America	USA	Hawaii
+North America	USA	Idaho
+North America	USA	Illinois
+North America	USA	Indiana
+North America	USA	Iowa
+North America	USA	Kansas
+North America	USA	Louisiana
+North America	USA	Maryland
+North America	USA	Massachusetts
+North America	USA	Michigan
+North America	USA	Minnesota
+North America	USA	Missouri
+North America	USA	Montana
+North America	USA	Nebraska
+North America	USA	Nevada
+North America	USA	New Hampshire
+North America	USA	New Jersey
+North America	USA	New York
+North America	USA	North Carolina
+North America	USA	Ohio
+North America	USA	Oregon
+North America	USA	Pennsylvania
+North America	USA	Puerto Rico
+North America	USA	Rhode Island
+North America	USA	South Carolina
+North America	USA	Texas
+North America	USA	USA
+North America	USA	Utah
+North America	USA	Vermont
+North America	USA	Virginia
+North America	USA	Washington
+North America	USA	Washington DC
+North America	USA	Wisconsin
+North America	USA	Wyoming
+Oceania	Australia	Australia
+Oceania	Australia	New South Wales
+Oceania	Australia	Northern Territory
+Oceania	Australia	Northern territory
+Oceania	Australia	Queensland
+Oceania	Australia	South Australia
+Oceania	Australia	Victoria
+Oceania	Australia	Western Australia
+Oceania	Guam	Guam
+Oceania	New Zealand	Auckland
+Oceania	New Zealand	Otago
+Oceania	New Zealand	Wellington
+South America	Argentina	Argentina
+South America	Argentina	Buenos Aires
+South America	Argentina	Ciudad Autonoma de Buenos Aires
+South America	Argentina	Rio Negro
+South America	Brazil	Alagoas
+South America	Brazil	Amazonas State
+South America	Brazil	Bahia
+South America	Brazil	Brazil
+South America	Brazil	Distrito Federal
+South America	Brazil	Espirito Santo
+South America	Brazil	Goiais
+South America	Brazil	Minas Gerais
+South America	Brazil	Rio Grande do Sul
+South America	Brazil	Rio de Janeiro
+South America	Brazil	Santa Catarina
+South America	Brazil	Sao Paulo
+South America	Chile	Antofagasta
+South America	Chile	Chillan
+South America	Chile	Concepcion
+South America	Chile	Coyhaique
+South America	Chile	Puerto Montt
+South America	Chile	Punta Arenas
+South America	Chile	Rancagua
+South America	Chile	Santiago
+South America	Chile	Talca
+South America	Chile	Temuco
+South America	Chile	Valparaiso
+South America	Colombia	Antioquia
+South America	Colombia	Bogota
+South America	Colombia	Boyaca
+South America	Colombia	Caldas
+South America	Colombia	Cesar
+South America	Colombia	Choco
+South America	Colombia	Colombia
+South America	Colombia	Cordoba
+South America	Colombia	Cundinamarca
+South America	Colombia	Huila
+South America	Colombia	Magdalena
+South America	Colombia	Meta
+South America	Colombia	Narino
+South America	Colombia	Norte de santander
+South America	Colombia	Risaralda
+South America	Colombia	Tolima
+South America	Colombia	Valle del Cauca
+South America	Ecuador	Guayas
+South America	Ecuador	Pichincha
+South America	Ecuador	Quito
+South America	Peru	Lima
+South America	South America	South America
+South America	Uruguay	Montevideo
+

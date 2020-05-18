@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+import argparse
+import pandas as pd
+from pathlib import Path
+
+base = Path(__file__).resolve().parent.parent
+
+HIERARCHY_COLUMNS = ['region', 'country', 'division']
+
+parser = argparse.ArgumentParser(
+    description="Create a known location hierarchy from given metadata that "
+        "can be used to validate future metadata and annotations. The output "
+        "hierarchy TSV is printed to stdout, and you likely want to redirect "
+        "it to a new file.",
+    formatter_class=argparse.RawTextHelpFormatter
+)
+
+parser.add_argument(
+    "metadata",
+    nargs="?",
+    default="s3://nextstrain-ncov-private/metadata.tsv.gz",
+    help="Metadata file (in TSV format) used to build hierarchy.\n")
+
+args = parser.parse_args()
+
+metadata = pd \
+    .read_csv(args.metadata, sep='\t') \
+    .rename(columns={
+        resolution: f'{resolution}_strain' for resolution in HIERARCHY_COLUMNS
+    })
+
+known_hierarchies = pd \
+    .wide_to_long(metadata,
+        stubnames=HIERARCHY_COLUMNS,
+        i=['gisaid_epi_isl', 'strain'],
+        j="resolution_type",
+        sep='_',
+        suffix='\w+') \
+    .reset_index()[HIERARCHY_COLUMNS] \
+    .drop_duplicates() \
+    .reset_index(drop=True) \
+    .sort_values(by=HIERARCHY_COLUMNS)
+
+print(known_hierarchies.to_csv(index=False, sep='\t'))
