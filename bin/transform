@@ -7,6 +7,7 @@ from pathlib import Path
 import fsspec
 import pandas as pd
 from typing import List
+from utils.hierarchy_dataframe import hierarchy_dataframe
 
 
 # Note: 'sequence' should NEVER appear in these lists!
@@ -264,7 +265,31 @@ def validate_metadata(metadata: pd.DataFrame,
             f"«{location_hierarchy_columns}». At this point, we expect all " \
             "missing values to be interpolated."
 
+    def no_unknown_hierarchies():
+        """
+        Raises an ``AssertionError`` if the metadata contain hierarchies not
+        found in the defined location hierarchy.
+        """
+        location_hierarchy = pd.read_csv(args.location_hierarchy, sep='\t')
+        metadata_locations = hierarchy_dataframe(metadata, location_hierarchy_columns)
+
+        # Use dataframe indices for easier comparison of row values
+        location_hierarchy.index = location_hierarchy[location_hierarchy_columns]
+        metadata_locations.index = metadata_locations[location_hierarchy_columns]
+
+        unknown_hierarchies = [
+            idx \
+            for idx, row
+            in metadata_locations.iterrows() \
+            if not idx in location_hierarchy.index
+        ]
+
+        assert not unknown_hierarchies, "The following unknown hierarchies exist " \
+            "in the metadata: \n" \
+            f"{unknown_hierarchies}"
+
     no_missing_hierarchy_data()
+    no_unknown_hierarchies()
 
 
 if __name__ == '__main__':
@@ -292,6 +317,10 @@ if __name__ == '__main__':
         "# First Californian sample\n\t"
         "USA/CA1/2020    EPI_ISL_406034    genbank_accession   MN994467\n\t"
         "Wuhan-Hu-1/2019 EPI_ISL_402125    collection_date 2019-12-26 # Manually corrected date")
+    parser.add_argument("--location-hierarchy",
+        default=base / "source-data/location_hierarchy.tsv",
+        help="A location hierarchy used to validate metadata resolutions (e.g. "
+            "region, country, and division).")
     parser.add_argument("--output-metadata",
         default=base / "data/metadata.tsv",
         help="Output location of generated metadata tsv. Defaults to `data/metadata.tsv`")
