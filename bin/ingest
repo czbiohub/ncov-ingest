@@ -47,9 +47,14 @@ if [[ "$branch" == master ]]; then
 fi
 ./bin/upload-to-s3 --quiet data/gisaid.ndjson "$S3_DST/gisaid.ndjson.gz"
 
+if [[ -f "$S3_SRC/metadata.tsv.gz" ]]; then
+    ./bin/create-hierarchy > source-data/location_hierarchy.tsv
+fi
+
 ./bin/transform data/gisaid.ndjson \
   --output-metadata data/metadata.tsv \
   --output-fasta data/sequences.fasta
+
 
 if [[ "$branch" == master ]]; then
     ./bin/notify-on-metadata-change data/metadata.tsv "$S3_SRC/metadata.tsv.gz"
