@@ -285,11 +285,23 @@ def validate_metadata(metadata: pd.DataFrame,
         ]
 
         assert not unknown_hierarchies, "The following unknown hierarchies exist " \
-            "in the metadata: \n" \
-            f"{unknown_hierarchies}"
+            f"in the metadata: {unknown_hierarchies}"
 
-    no_missing_hierarchy_data()
-    no_unknown_hierarchies()
+    exceptions = []
+
+    try:
+        no_missing_hierarchy_data()
+    except AssertionError as e:
+        exceptions.append(e)
+
+    try:
+        no_unknown_hierarchies()
+    except AssertionError as e:
+        exceptions.append(e)
+
+    assert not exceptions, "The following errors occurred when validating " \
+        "the metadata: \n" \
+        f"{exceptions}"
 
 
 if __name__ == '__main__':
