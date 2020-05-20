@@ -21,6 +21,7 @@ def hierarchy_dataframe(metadata: pd.DataFrame, hierarchy_columns: list) -> pd.D
             sep='_',
             suffix='\w+') \
         .reset_index()[hierarchy_columns] \
+        .fillna('') \
         .drop_duplicates() \
         .reset_index(drop=True) \
         .sort_values(by=hierarchy_columns)
