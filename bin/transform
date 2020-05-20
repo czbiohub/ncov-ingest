@@ -6,6 +6,7 @@ import argparse
 from pathlib import Path
 import fsspec
 import pandas as pd
+from typing import List
 
 
 # Note: 'sequence' should NEVER appear in these lists!
@@ -247,6 +248,25 @@ def update_metadata(curated_gisaid_data: pd.DataFrame) -> pd.DataFrame:
     return curated_gisaid_data
 
 
+def validate_metadata(metadata: pd.DataFrame,
+    location_hierarchy_columns: List[str] = ['region', 'country', 'division']):
+    """
+    Performs several tests on the given *metadata*, raising an
+    ``AssertionError`` if the tests fail.
+    """
+    def no_missing_hierarchy_data():
+        """
+        Raises an ``AssertionError`` if the metadata have missing values in the
+        location hierarchy columns.
+        """
+        assert metadata[location_hierarchy_columns].notnull().all().all(), \
+            "There are missing values in the location hierarchy columns " \
+            f"«{location_hierarchy_columns}». At this point, we expect all " \
+            "missing values to be interpolated."
+
+    no_missing_hierarchy_data()
+
+
 if __name__ == '__main__':
     base = Path(__file__).resolve().parent.parent
 
@@ -295,6 +315,8 @@ if __name__ == '__main__':
     gisaid_data = parse_age(gisaid_data)
     gisaid_data = parse_sex(gisaid_data)
     gisaid_data = update_metadata(gisaid_data)
+
+    validate_metadata(gisaid_data)
 
     # Export additional info
     gisaid_data[ADDITIONAL_INFO_COLUMNS] \
