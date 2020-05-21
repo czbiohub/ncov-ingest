@@ -273,7 +273,6 @@ def validate_metadata(metadata: pd.DataFrame,
         Raises an ``AssertionError`` if the metadata contain hierarchies not
         found in the defined location hierarchy.
         """
-        location_hierarchy = pd.read_csv(args.location_hierarchy, sep='\t')
         metadata_locations = hierarchy_dataframe(metadata, location_hierarchy_columns)
 
         # Use dataframe indices for easier comparison of row values
