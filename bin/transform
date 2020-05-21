@@ -355,8 +355,11 @@ if __name__ == '__main__':
     gisaid_data = parse_authors(gisaid_data)
     gisaid_data = parse_age(gisaid_data)
     gisaid_data = parse_sex(gisaid_data)
-    gisaid_data = update_metadata(gisaid_data)
 
+    # Write intermediate metadata to file for comparison before annotations
+    gisaid_data.to_csv(base / 'data/draft_metadata.tsv', sep='\t', index=False)
+
+    gisaid_data = update_metadata(gisaid_data)
     validate_metadata(gisaid_data)
 
     # Export additional info
