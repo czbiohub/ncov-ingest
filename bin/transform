@@ -217,7 +217,7 @@ def update_metadata(curated_gisaid_data: pd.DataFrame) -> pd.DataFrame:
 
     if args.annotations:
         # Use the curated annotations tsv to update any column values
-        user_provided_annotations = pd.read_csv(args.annotations, header=None, sep='\t', comment="#")
+        user_provided_annotations = read_annotations()
         for index, (strain, epi_isl, key, value) in user_provided_annotations.iterrows():
             # Strip any whitespace remaining from inline comments after the final column.
             if isinstance(value, str):
@@ -248,6 +248,9 @@ def update_metadata(curated_gisaid_data: pd.DataFrame) -> pd.DataFrame:
 
     return curated_gisaid_data
 
+def read_annotations() -> pd.DataFrame:
+    """ Returns a ``pd.DataFrame`` of manually curated annotations. """
+    return pd.read_csv(args.annotations, header=None, sep='\t', comment="#")
 
 def validate_metadata(metadata: pd.DataFrame,
     location_hierarchy_columns: List[str] = ['region', 'country', 'division']):
