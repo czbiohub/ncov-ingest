@@ -276,19 +276,39 @@ def validate_metadata(metadata: pd.DataFrame,
         metadata_locations = hierarchy_dataframe(metadata, location_hierarchy_columns)
 
         # Use dataframe indices for easier comparison of row values
-        location_hierarchy.index = location_hierarchy[location_hierarchy_columns]
+        known_location_hierarchies.index = known_location_hierarchies[location_hierarchy_columns]
         metadata_locations.index = metadata_locations[location_hierarchy_columns]
 
         unknown_hierarchies = [
             idx \
             for idx, row
             in metadata_locations.iterrows() \
-            if not idx in location_hierarchy.index
+            if not idx in known_location_hierarchies.index
         ]
 
         assert not unknown_hierarchies, "The following unknown hierarchies exist " \
             f"in the metadata: {unknown_hierarchies}"
 
+    def add_annotation_hierarchies() -> pd.DataFrame:
+        """
+        Adds location hierarchies hard coded in the annotations file to the list
+        of acceptable/known location hierarchies.
+        """
+        if args.annotations:
+            annotations = read_annotations()
+            annotations.columns = ['strain', 'gisaid_epi_isl', 'variable', 'value']
+            annotations = annotations \
+                .drop_duplicates(['gisaid_epi_isl', 'variable'], keep='last')
+            location_annotations = annotations.pivot(index='gisaid_epi_isl',
+                columns='variable', values='value') \
+                [location_hierarchy_columns + [ f'{resolution}_exposure' for resolution in location_hierarchy_columns]] \
+                .dropna()
+
+            return pd.concat([known_metadata_location_hierarchies, location_annotations]) \
+                .drop_duplicates()
+
+    known_metadata_location_hierarchies = pd.read_csv(args.location_hierarchy, sep='\t')
+    known_location_hierarchies = add_annotation_hierarchies()
     exceptions = []
 
     try:
