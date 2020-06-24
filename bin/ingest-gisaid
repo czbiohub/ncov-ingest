@@ -36,6 +36,7 @@ esac
 
 echo "S3_SRC is $S3_SRC"
 echo "S3_DST is $S3_DST"
+export S3_SRC S3_DST
 
 cd "$(dirname "$0")/.."
 

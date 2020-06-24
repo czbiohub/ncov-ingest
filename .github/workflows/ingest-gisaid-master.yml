@@ -11,7 +11,7 @@ on:
 
   schedule:
     # See table of scheduled times in the README.  Times here are UTC.
-    - cron: '0 6,12,15,21 * * *'
+    - cron: '0 */12 * * *'
 
   # Manually triggered using `./bin/trigger ingest`
   repository_dispatch:
@@ -35,5 +35,10 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         GISAID_API_ENDPOINT: ${{ secrets.GISAID_API_ENDPOINT }}
         GISAID_USERNAME_AND_PASSWORD: ${{ secrets.GISAID_USERNAME_AND_PASSWORD }}
+        S3_SRC: ${{ secrets.S3_PREFIX }}
+        SLACK_CHANNELS: "#covid19nextstrain"
         SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
-        SLACK_CHANNELS: ncov-gisaid-updates
+        CPUS: 96
+        MEMORY: 126GiB
+        AWS_BATCH_QUEUE: nextstrain-job-queue
+        AWS_BATCH_S3_BUCKET: ${{ secrets.BATCH_S3_BUCKET }}
