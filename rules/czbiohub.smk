@@ -15,7 +15,7 @@ rule upload_all:
     input:
         all_regions = expand("upload_{build_name}", build_name=BUILD_NAMES)
     params:
-        slack_message = lambda wildcards: f"Uploaded results for run {deploy_origin} to {config['s3_staging_url']}"
+        slack_message = lambda wildcards: f":rotating_light: <!channel> Uploaded results for run {deploy_origin} to {config['s3_staging_url']}"
     conda: config["conda_environment"]
     shell:
         """
