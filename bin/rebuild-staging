@@ -36,7 +36,7 @@ main() {
         (cd ncov; git pull)
     else
         echo "Cloning the ncov repo"
-        git clone https://github.com/czbiohub/ncov.git
+        git clone https://github.com/nextstrain/ncov.git
     fi
 
     if [[ -n "${metadata_src:-}" && -n "${sequences_src:-}" ]]; then
@@ -52,6 +52,8 @@ main() {
     fi
 
     cp "$bin"/../rules/czbiohub.smk ncov
+    cp -r "$bin"/../profiles/* ncov/my_profiles/
+    cp "$bin"/../scripts/* ncov/scripts/
 
     local output=$(
         "$bin"/launch-build \

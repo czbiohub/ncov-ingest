@@ -1,0 +1,300 @@
+# Define locations for which builds should be created.
+# For each build we specify a subsampling scheme via an explicit key.
+# If the name of the focal geography differs from the build name this needs to
+# be specified explicity as geographic_name. In addition, we require the
+# geographic scale the build focuses on. Together name and scale serve a look-up
+# in the geo_hierarchy to define region, country, division, etc
+builds:
+  california-global:
+    subsampling_scheme: czb-california
+    geographic_scale: division
+    division: California
+    region: North America
+    country: USA
+    auspice_config: "profiles/czbiohub/ca_auspice_config.json"
+    title: "SARS-CoV-2 build: California with global context"
+  california-only:
+    subsampling_scheme: czb-division-only-california
+    geographic_scale: division
+    division: California
+    region: North America
+    country: USA
+    auspice_config: "profiles/czbiohub/ca_auspice_config.json"
+    title: "SARS-CoV-2 build: California without global context"
+  minnesota:
+    subsampling_scheme: czb-division
+    geographic_scale: division
+    division: Minnesota
+    region: North America
+    country: USA
+    auspice_config: "profiles/czbiohub/division_auspice_config.json"
+    title: "SARS-CoV-2 build: Minnesota"
+  washington:
+    subsampling_scheme: czb-division
+    geographic_scale: division
+    division: Washington
+    region: North America
+    country: USA
+    auspice_config: "profiles/czbiohub/division_auspice_config.json"
+    title: "SARS-CoV-2 build: Washington"
+  new-york:
+    subsampling_scheme: czb-division
+    geographic_scale: division
+    division: New York
+    region: North America
+    country: USA
+    auspice_config: "profiles/czbiohub/division_auspice_config.json"
+    title: "SARS-CoV-2 build: New York"
+  hong-kong:
+    subsampling_scheme: czb-division
+    geographic_scale: division
+    division: Hong Kong
+    region: Asia
+    country: Hong Kong
+    auspice_config: "profiles/czbiohub/division_auspice_config.json"
+    title: "SARS-CoV-2 build: Hong Kong"
+  guangdong:
+    subsampling_scheme: czb-division
+    geographic_scale: division
+    division: Guangdong
+    region: Asia
+    country: China
+    auspice_config: "profiles/czbiohub/division_auspice_config.json"
+    title: "SARS-CoV-2 build: Guangdong"
+  shanghai:
+    subsampling_scheme: czb-division
+    geographic_scale: division
+    division: Shanghai
+    region: Asia
+    country: China
+    auspice_config: "profiles/czbiohub/division_auspice_config.json"
+    title: "SARS-CoV-2 build: Shanghai"
+  hubei:
+    subsampling_scheme: czb-division
+    geographic_scale: division
+    division: Hubei
+    region: Asia
+    country: China
+    auspice_config: "profiles/czbiohub/division_auspice_config.json"
+    title: "SARS-CoV-2 build: Hubei"
+  japan:
+    subsampling_scheme: czb-country
+    geographic_scale: country
+    region: Asia
+    country: Japan
+    auspice_config: "profiles/czbiohub/division_auspice_config.json"
+    title: "SARS-CoV-2 build: Japan"
+  italy:
+    subsampling_scheme: czb-country
+    geographic_scale: country
+    region: Europe
+    country: Italy
+    auspice_config: "profiles/czbiohub/division_auspice_config.json"
+    title: "SARS-CoV-2 build: Italy"
+  united-kingdom:
+    subsampling_scheme: czb-country
+    geographic_scale: country
+    region: Europe
+    country: United Kingdom
+    auspice_config: "profiles/czbiohub/division_auspice_config.json"
+    title: "SARS-CoV-2 build: United Kingdom"
+  iceland:
+    subsampling_scheme: czb-country
+    geographic_scale: country
+    region: Europe
+    country: Iceland
+    auspice_config: "profiles/czbiohub/division_auspice_config.json"
+    title: "SARS-CoV-2 build: Iceland"   
+
+    
+files:
+  lat_longs: "profiles/czbiohub/lat_longs.tsv"
+  ordering: "profiles/czbiohub/ordering.tsv"
+
+
+# Subsampling logic
+subsampling:
+  czb-california:
+    division:
+      group_by: "year month"
+      seq_per_group: 10000
+      exclude: "--exclude-where 'division!={division}' 'country!={country}' 'region!={region}'"
+      include: "--include-where 'division==Grand Princess Cruise Ship'"
+    country:
+      group_by: "division year month"
+      seq_per_group: 20
+      exclude: "--exclude-where 'region!={region}' 'country!={country}' 'division={division}'"
+      priorities:
+        type: "proximity"
+        focus: "division"
+    region:
+      group_by: "country year month"
+      seq_per_group: 10
+      exclude: "--exclude-where 'region!={region}' 'country={country}'"
+      priorities:
+        type: "proximity"
+        focus: "division"
+    global:
+      group_by: "country year month"
+      seq_per_group: 5
+      exclude: "--exclude-where 'region={region}'"
+      priorities:
+        type: "proximity"
+        focus: "division" 
+  czb-division:
+    division:
+      group_by: "year month"
+      seq_per_group: 10000
+      exclude: "--exclude-where 'division!={division}' 'country!={country}' 'region!={region}'"      
+    country:
+      group_by: "division year month"
+      seq_per_group: 20
+      exclude: "--exclude-where 'region!={region}' 'country!={country}' 'division={division}'"
+      priorities:
+        type: "proximity"
+        focus: "division"
+    region:
+      group_by: "country year month"
+      seq_per_group: 10
+      exclude: "--exclude-where 'region!={region}' 'country={country}'"
+      priorities:
+        type: "proximity"
+        focus: "division"
+    global:
+      group_by: "country year month"
+      seq_per_group: 5
+      exclude: "--exclude-where 'region={region}'"
+      priorities:
+        type: "proximity"
+        focus: "division"       
+  czb-country:
+    # focal samples for country
+    country:
+      group_by: "division year month"
+      seq_per_group: 500
+      exclude: "--exclude-where 'region!={region}' 'country!={country}'"
+    # contextual samples from country's region
+    region:
+      group_by: "country year month"
+      seq_per_group: 10
+      exclude: "--exclude-where 'region!={region}' 'country={country}'"
+      priorities:
+        type: "proximity"
+        focus: "country"
+    # Contextual samples from the rest of the world,
+    # excluding the current region to avoid resampling.        
+    global:
+      group_by: "country year month"
+      seq_per_group: 5
+      exclude: "--exclude-where 'region={region}'"
+      priorities:
+        type: "proximity"
+        focus: "country"
+  czb-division-only:
+    division:
+      group_by: "year month"
+      seq_per_group: 10000
+      exclude: "--exclude-where 'division!={division}' 'country!={country}' 'region!={region}'"
+    country:
+      group_by: "division year month"
+      seq_per_group: 1
+      exclude: "--exclude-where 'region!={region}' 'country!={country}' 'division={division}'"
+      priorities:
+        type: "proximity"
+        focus: "division"
+    region:
+      group_by: "country year month"
+      seq_per_group: 1
+      exclude: "--exclude-where 'region!={region}' 'country={country}'"
+      priorities:
+        type: "proximity"
+        focus: "division"
+    global:
+      group_by: "country year month"
+      seq_per_group: 1
+      exclude: "--exclude-where 'region={region}'"
+      priorities:
+        type: "proximity"
+        focus: "division"
+  czb-division-only-california:
+    division:
+      group_by: "year month"
+      seq_per_group: 10000
+      exclude: "--exclude-where 'division!={division}' 'country!={country}' 'region!={region}'"
+      include: "--include-where 'division==Grand Princess Cruise Ship'"      
+    country:
+      group_by: "division year month"
+      seq_per_group: 1
+      exclude: "--exclude-where 'region!={region}' 'country!={country}' 'division={division}'"
+      priorities:
+        type: "proximity"
+        focus: "division"
+    region:
+      group_by: "country year month"
+      seq_per_group: 1
+      exclude: "--exclude-where 'region!={region}' 'country={country}'"
+      priorities:
+        type: "proximity"
+        focus: "division"
+    global:
+      group_by: "country year month"
+      seq_per_group: 1
+      exclude: "--exclude-where 'region={region}'"
+      priorities:
+        type: "proximity"
+        focus: "division"        
+
+# if different exposure traits should be used for some builds, specify here
+# otherwise the default exposure in config/config.yaml will used
+exposure:
+  global:
+    trait: "country"
+    exposure: "country_exposure"
+
+  north-america:
+    trait: "division"
+    exposure: "division_exposure"
+
+  oceania:
+    trait: "division"
+    exposure: "division_exposure"
+
+# if different traits should be reconstructed for some builds, specify here
+# otherwise the default trait config in config/config.yaml will used
+traits:
+  california:
+    sampling_bias_correction: 2.5
+    columns: ["country_exposure", "division_exposure"]
+  minnesota:
+    sampling_bias_correction: 2.5
+    columns: ["country_exposure", "division_exposure"]
+  washington:
+    sampling_bias_correction: 2.5
+    columns: ["country_exposure", "division_exposure"]
+  new-york:
+    sampling_bias_correction: 2.5
+    columns: ["country_exposure", "division_exposure"]     
+  hong-kong:
+    sampling_bias_correction: 2.5
+    columns: ["country_exposure"]
+  guangdong:
+    sampling_bias_correction: 2.5
+    columns: ["country_exposure", "division_exposure"]
+  shanghai:
+    sampling_bias_correction: 2.5
+    columns: ["country_exposure", "division_exposure"]
+  hubei:
+    sampling_bias_correction: 2.5
+    columns: ["country_exposure", "division_exposure"]    
+  japan:
+    sampling_bias_correction: 2.5
+    columns: ["country_exposure"]
+  italy:
+    sampling_bias_correction: 2.5
+    columns: ["country_exposure"]
+  united-kingdom:
+    sampling_bias_correction: 2.5
+    columns: ["country_exposure"]
+  iceland:
+    sampling_bias_correction: 2.5
+    columns: ["country_exposure"]    
