@@ -47,7 +47,8 @@ main() {
         # updates the files on S3, this also avoids a narrow race condition if AWS
         # Batch is quick or the upload to S3 slow.
         mkdir -p ncov/data/
-        cp -v "$metadata_src" "$sequences_src" ncov/data/
+        cp -v "$sequences_src" ncov/data/
+        python ncov/scripts/add_CA_metadata.py --metadata "$metadata_src" --ca_regions ncov/profiles/czbiohub/ca_regions.csv --output ncov/data/metadata.tsv
     fi
 
     cp "$bin"/../rules/czbiohub.smk ncov
