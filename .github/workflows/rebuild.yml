@@ -24,5 +24,10 @@ jobs:
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        S3_SRC: ${{ secrets.S3_PREFIX }}
+        SLACK_CHANNELS: "#covid19nextstrain"
         SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
-        SLACK_CHANNELS: ncov-gisaid-updates
+        CPUS: 96
+        MEMORY: 126GiB
+        AWS_BATCH_QUEUE: nextstrain-job-queue
+        AWS_BATCH_S3_BUCKET: ${{ secrets.BATCH_S3_BUCKET }}

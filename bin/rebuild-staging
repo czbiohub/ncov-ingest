@@ -36,7 +36,7 @@ main() {
         (cd ncov; git pull)
     else
         echo "Cloning the ncov repo"
-        git clone https://github.com/nextstrain/ncov.git
+        git clone https://github.com/czbiohub/ncov.git
     fi
 
     if [[ -n "${metadata_src:-}" && -n "${sequences_src:-}" ]]; then
@@ -50,11 +50,12 @@ main() {
         cp -v "$metadata_src" "$sequences_src" ncov/data/
     fi
 
+    cp "$bin"/../rules/czbiohub.smk ncov
 
     local output=$(
         "$bin"/launch-build \
-            ncov deploy_to_staging \
-            --config slack_token="$SLACK_TOKEN"
+            ncov upload_all \
+            --config slack_token="$SLACK_TOKEN" slack_channel="$SLACK_CHANNELS" s3_staging_url="$S3_DST"/results localrules=czbiohub.smk
     )
 
     echo "$output"
