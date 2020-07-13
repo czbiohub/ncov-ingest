@@ -1,0 +1,15 @@
+name: Rebuild nextstrain.org/staging/ncov
+
+on:
+  # Manually triggered using bin/trigger sync_to_covidtracker
+  repository_dispatch:
+    types: sync_to_covidtracker
+
+  # Manually triggered using GitHub's UI
+  workflow_dispatch:
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
