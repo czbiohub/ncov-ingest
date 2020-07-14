@@ -27,7 +27,8 @@ jobs:
         S3_SRC: ${{ secrets.S3_PREFIX }}
         SLACK_CHANNELS: "#covid19nextstrain"
         SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
-        CPUS: 96
-        MEMORY: 126GiB
         AWS_BATCH_QUEUE: nextstrain-job-queue
         AWS_BATCH_S3_BUCKET: ${{ secrets.BATCH_S3_BUCKET }}
+        CPUS: 96
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        MEMORY: 126GiB

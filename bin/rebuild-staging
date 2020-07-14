@@ -36,7 +36,17 @@ main() {
         (cd ncov; git pull)
     else
         echo "Cloning the ncov repo"
-        git clone https://github.com/czbiohub/ncov.git
+        git clone https://github.com/nextstrain/ncov.git
+
+        echo "Cloning the covidhub repo"
+        mkdir covidhub
+        cd covidhub
+        git init
+        git pull https://"${GH_TOKEN}"@github.com/czbiohub/covidhub.git
+        git checkout FETCH_HEAD
+        cd -
+
+        cp -r covidhub/nextstrain/profiles/* ncov/my_profiles/
     fi
 
     if [[ -n "${metadata_src:-}" && -n "${sequences_src:-}" ]]; then
@@ -48,7 +58,7 @@ main() {
         # Batch is quick or the upload to S3 slow.
         mkdir -p ncov/data/
         cp -v "$sequences_src" ncov/data/
-        python ncov/scripts/add_CA_metadata.py --metadata "$metadata_src" --ca_regions ncov/profiles/czbiohub/ca_regions.csv --output ncov/data/metadata.tsv
+        python ncov/my_profiles/czbiohub/add_CA_metadata.py --metadata "$metadata_src" --ca_regions ncov/my_profiles/czbiohub/ca_regions.csv --output ncov/data/metadata.tsv
     fi
 
     cp "$bin"/../rules/czbiohub.smk ncov

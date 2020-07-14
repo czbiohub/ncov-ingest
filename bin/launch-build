@@ -12,5 +12,5 @@ nextstrain build --aws-batch --detach \
     --aws-batch-queue "$AWS_BATCH_QUEUE" \
     --aws-batch-s3-bucket "$AWS_BATCH_S3_BUCKET" \
     "$@" \
-    --profile profiles/czbiohub \
+    --profile my_profiles/czbiohub \
     --set-threads tree=16
