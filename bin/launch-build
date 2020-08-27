@@ -1,7 +1,16 @@
 #!/bin/bash
 set -euo pipefail
 
-nextstrain build --aws-batch --cpus 96 --memory 180GiB --detach \
+: "${CPUS:=96}"
+: "${MEMORY:=180GiB}"
+: "${AWS_BATCH_QUEUE:=nextstrain-job-queue}"
+: "${AWS_BATCH_S3_BUCKET:?The AWS_BATCH_S3_BUCKET environment variable is required.}"
+
+nextstrain build --aws-batch --detach \
+    --cpus "$CPUS" \
+    --memory "$MEMORY" \
+    --aws-batch-queue "$AWS_BATCH_QUEUE" \
+    --aws-batch-s3-bucket "$AWS_BATCH_S3_BUCKET" \
     "$@" \
-    --profile nextstrain_profiles/nextstrain \
+    --profile my_profiles/czbiohub \
     --set-threads tree=16

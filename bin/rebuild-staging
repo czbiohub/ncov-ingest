@@ -7,6 +7,8 @@ if ! hash nextstrain 2>/dev/null; then
 fi
 
 : "${SLACK_TOKEN:?The SLACK_TOKEN environment variable is required.}"
+: "${GH_USERNAME:?The GH_USERNAME environment variable is required.}"
+: "${GH_TOKEN:?The GH_TOKEN environment variable is required.}"
 
 bin="$(dirname "$0")"
 
@@ -37,6 +39,17 @@ main() {
     else
         echo "Cloning the ncov repo"
         git clone https://github.com/nextstrain/ncov.git
+
+        echo "Cloning the covidhub repo"
+        mkdir covidhub
+        cd covidhub
+        git init
+        git pull https://"${GH_TOKEN}"@github.com/czbiohub/covidhub.git
+        git checkout FETCH_HEAD
+        pip install -e code
+        cd -
+
+        cp -r covidhub/nextstrain/profiles/* ncov/my_profiles/
     fi
 
     if [[ -n "${metadata_src:-}" && -n "${sequences_src:-}" ]]; then
@@ -47,14 +60,16 @@ main() {
         # updates the files on S3, this also avoids a narrow race condition if AWS
         # Batch is quick or the upload to S3 slow.
         mkdir -p ncov/data/
-        cp -v "$metadata_src" "$sequences_src" ncov/data/
+        cp -v "$sequences_src" ncov/data/
+        add_CA_metadata --metadata "$metadata_src" --ca_regions ncov/my_profiles/czbiohub/ca_regions.csv --output ncov/data/metadata.tsv
     fi
 
+    cp "$bin"/../rules/czbiohub.smk ncov
 
     local output=$(
         "$bin"/launch-build \
-            ncov deploy_to_staging \
-            --config slack_token="$SLACK_TOKEN"
+            ncov upload_all \
+            --config slack_token="$SLACK_TOKEN" slack_channel="$SLACK_CHANNELS" s3_staging_url="$S3_DST"/results gh_username="$GH_USERNAME" gh_token="$GH_TOKEN" localrules=czbiohub.smk
     )
 
     echo "$output"

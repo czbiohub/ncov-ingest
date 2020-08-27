@@ -61,6 +61,7 @@ main() {
 
     echo "S3_SRC is $S3_SRC"
     echo "S3_DST is $S3_DST"
+    export S3_SRC S3_DST
 
     cd "$(dirname "$0")/.."
 
@@ -90,6 +91,9 @@ main() {
         ./bin/notify-on-additional-info-change data/gisaid/additional_info.tsv "$S3_SRC/additional_info.tsv.gz"
         ./bin/notify-on-flagged-metadata-change data/gisaid/flagged_metadata.txt "$S3_SRC/flagged_metadata.txt.gz"
         ./bin/notify-on-location-hierarchy-addition data/gisaid/location_hierarchy.tsv source-data/location_hierarchy.tsv
+
+        ./bin/rebuild-staging data/gisaid/metadata.tsv "$S3_SRC/metadata.tsv.gz" \
+          data/gisaid/sequences.fasta "$S3_SRC/sequences.fasta.gz"
     fi
 
     ./bin/upload-to-s3 ${silent:+--quiet} data/gisaid/metadata.tsv "$S3_DST/metadata.tsv.gz"
