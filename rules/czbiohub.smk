@@ -3,6 +3,7 @@ environ["GH_TOKEN"]      = config["gh_token"]      or ""
 environ["GH_USERNAME"]   = config["gh_username"]   or ""
 environ["SLACK_TOKEN"]   = config["slack_token"]   or ""
 environ["SLACK_CHANNEL"] = config["slack_channel"] or ""
+environ["AUGUR_RECURSION_LIMIT"] = str(25000)
 
 try:
     deploy_origin = (
