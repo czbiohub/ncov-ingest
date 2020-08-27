@@ -77,7 +77,7 @@ main() {
         aws s3 cp --no-progress "$S3_DST/gisaid.ndjson.gz" - | gunzip -cfq > data/gisaid.ndjson
     fi
 
-    ./bin/transform-gisaid data/gisaid.ndjson \
+    ./bin/transform-gisaid-2 data/gisaid.ndjson \
       --output-metadata data/gisaid/metadata.tsv \
       --output-fasta data/gisaid/sequences.fasta
 
