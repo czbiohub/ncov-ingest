@@ -1,0 +1,32 @@
+name: sync results to covidtracker
+
+on:
+  # Manually triggered using bin/trigger sync_to_covidtracker
+  repository_dispatch:
+    types: sync_to_covidtracker
+
+  # Manually triggered using GitHub's UI
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout covidtracker
+      run: |
+        git config --global user.email "noreply@czbiohub.com"
+        git config --global user.name "covidhub bot"
+        mkdir covidtracker
+        cd covidtracker
+        git init
+        git fetch https://${{ secrets.GH_TOKEN }}@github.com/czbiohub/covidtracker.git
+        git checkout FETCH_HEAD
+        aws s3 cp s3://czb-covid-results/gisaid/results/ncov_california.json auspice/covidtracker_ca.json
+        git diff --quiet || ( \
+            git commit -a -m "update CA results" &&
+            git push https://${{ secrets.GH_TOKEN }}@github.com/czbiohub/covidtracker.git HEAD:master
+        )
+      env:
+        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
