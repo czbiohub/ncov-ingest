@@ -4,4 +4,10 @@ Portable sha256sum utility.
 """
 from hashlib import sha256
 from sys import stdin
-print(sha256(stdin.buffer.read()).hexdigest())
+digester = sha256()
+while True:
+    data = stdin.buffer.read(16 * 1024 * 1024)
+    if len(data) == 0:
+        break
+    digester.update(data)
+print(digester.hexdigest())
