@@ -66,44 +66,48 @@ main() {
     cd "$(dirname "$0")/.."
 
     if [[ "$fetch" == 1 ]]; then
-        ./bin/fetch-from-gisaid > data/gisaid.ndjson
+        ./bin/fetch-from-gisaid | gzip -c > data/gisaid.ndjson.gz
         if [[ "$branch" == trunk ]]; then
-            ./bin/notify-on-record-change data/gisaid.ndjson "$S3_SRC/gisaid.ndjson.gz" "GISAID"
+            ./bin/notify-on-record-change data/gisaid.ndjson.gz "$S3_SRC/gisaid.ndjson.gz" "GISAID"
         fi
-        ./bin/upload-to-s3 --quiet data/gisaid.ndjson "$S3_DST/gisaid.ndjson.gz"
+        ./bin/upload-to-s3 --quiet data/gisaid.ndjson.gz "$S3_DST/gisaid.ndjson.gz"
     else
-        aws s3 cp --no-progress "$S3_DST/gisaid.ndjson.gz" - | gunzip -cfq > data/gisaid.ndjson
+        aws s3 cp --no-progress "$S3_DST/gisaid.ndjson.gz" - > data/gisaid.ndjson.gz
     fi
 
     flagged_annotations="$(mktemp -t flagged-annotations-XXXXXX)"
     trap "rm -f '$flagged_annotations'" EXIT
-    ./bin/transform-gisaid data/gisaid.ndjson \
+    ./bin/transform-gisaid data/gisaid.ndjson.gz \
         --output-metadata data/gisaid/metadata.tsv \
-        --output-fasta data/gisaid/sequences.fasta \
+        --output-fasta data/gisaid/sequences.fasta.gz \
         --output-unix-newline > "$flagged_annotations"
 
-    # Download old clades
-    (   aws s3 cp --no-progress "$S3_DST/nextclade.tsv.gz" - \
-     || aws s3 cp --no-progress "$S3_SRC/nextclade.tsv.gz" -) \
-        | gunzip -cfq \
-        > "data/gisaid/nextclade.tsv"
+    # remove data/gisaid.ndjson.gz as we don't need it past this point.
+    rm -f data/gisaid.ndjson.gz
 
-    # Find sequences in FASTA which don't have clades assigned yet
-    ./bin/filter-fasta \
-      --input_fasta="data/gisaid/sequences.fasta" \
-      --input_tsv="data/gisaid/nextclade.tsv" \
-      --output_fasta="data/gisaid/nextclade.sequences.fasta" \
+    # TODO: (ttung) nextclade support is broken at the moment.
+    # # Download old clades
+    # (   aws s3 cp --no-progress "$S3_DST/nextclade.tsv.gz" - \
+    #  || aws s3 cp --no-progress "$S3_SRC/nextclade.tsv.gz" -) \
+    #     | gunzip -cfq \
+    #     > "data/gisaid/nextclade.tsv"
 
-    # ... and assign clades to them
-    ./bin/run-nextclade \
-      "data/gisaid/nextclade.sequences.fasta" \
-      "data/gisaid/nextclade.tsv" \
+    # # Find sequences in FASTA which don't have clades assigned yet
+    # ./bin/filter-fasta \
+    #   --input_fasta="data/gisaid/sequences.fasta" \
+    #   --input_tsv="data/gisaid/nextclade.tsv" \
+    #   --output_fasta="data/gisaid/nextclade.sequences.fasta" \
 
-    # Join these clades into metadata
-    ./bin/join-metadata-and-clades \
-      "data/gisaid/metadata.tsv" \
-      "data/gisaid/nextclade.tsv" \
-      -o "data/gisaid/metadata.tsv"
+    # # ... and assign clades to them
+    # ./bin/run-nextclade \
+    #   "data/gisaid/nextclade.sequences.fasta" \
+    #   "data/gisaid/nextclade.tsv" \
+
+    # # Join these clades into metadata
+    # ./bin/join-metadata-and-clades \
+    #   "data/gisaid/metadata.tsv" \
+    #   "data/gisaid/nextclade.tsv" \
+    #   -o "data/gisaid/metadata.tsv"
 
     ./bin/flag-metadata data/gisaid/metadata.tsv > data/gisaid/flagged_metadata.txt
     ./bin/check-locations data/gisaid/metadata.tsv \
@@ -118,14 +122,15 @@ main() {
         ./bin/notify-on-location-hierarchy-addition data/gisaid/location_hierarchy.tsv source-data/location_hierarchy.tsv
 
         # ./bin/rebuild-staging data/gisaid/metadata.tsv "$S3_SRC/metadata.tsv.gz" \
-        #   data/gisaid/sequences.fasta "$S3_SRC/sequences.fasta.gz"
+        #   data/gisaid/sequences.fasta.gz "$S3_SRC/sequences.fasta.gz"
     fi
 
     ./bin/upload-to-s3 ${silent:+--quiet} data/gisaid/metadata.tsv "$S3_DST/metadata.tsv.gz"
-    ./bin/upload-to-s3 ${silent:+--quiet} data/gisaid/nextclade.tsv "$S3_DST/nextclade.tsv.gz"
+    # TODO: (ttung) nextclade support is broken at the moment.
+    # ./bin/upload-to-s3 ${silent:+--quiet} data/gisaid/nextclade.tsv "$S3_DST/nextclade.tsv.gz"
     ./bin/upload-to-s3 ${silent:+--quiet} data/gisaid/additional_info.tsv "$S3_DST/additional_info.tsv.gz"
     ./bin/upload-to-s3 ${silent:+--quiet} data/gisaid/flagged_metadata.txt "$S3_DST/flagged_metadata.txt.gz"
-    ./bin/upload-to-s3 ${silent:+--quiet} data/gisaid/sequences.fasta "$S3_DST/sequences.fasta.gz"
+    ./bin/upload-to-s3 ${silent:+--quiet} data/gisaid/sequences.fasta.gz "$S3_DST/sequences.fasta.gz"
 }
 
 print-help() {
