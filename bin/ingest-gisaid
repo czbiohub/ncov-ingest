@@ -30,7 +30,7 @@ main() {
     done
 
     # Determine where to save data files based on if we're running as a result of a
-    # push to master or to another branch (or locally, outside of the GitHub
+    # push to trunk or to another branch (or locally, outside of the GitHub
     # workflow).  Files are always compared to the default/primary paths in the
     # source S3 bucket.
     #
@@ -38,9 +38,9 @@ main() {
     local branch=
 
     case "${GITHUB_REF:-}" in
-        refs/heads/master)
+        refs/heads/trunk)
             # Do nothing different; defaults above are good.
-            branch=master
+            branch=trunk
             ;;
         refs/heads/*)
             # Save data files under a per-branch prefix
@@ -67,7 +67,7 @@ main() {
 
     if [[ "$fetch" == 1 ]]; then
         ./bin/fetch-from-gisaid > data/gisaid.ndjson
-        if [[ "$branch" == master ]]; then
+        if [[ "$branch" == trunk ]]; then
             ./bin/notify-on-record-change data/gisaid.ndjson "$S3_SRC/gisaid.ndjson.gz" "GISAID"
         fi
         ./bin/upload-to-s3 --quiet data/gisaid.ndjson "$S3_DST/gisaid.ndjson.gz"
@@ -110,7 +110,7 @@ main() {
         data/gisaid/location_hierarchy.tsv \
         gisaid_epi_isl
 
-    if [[ "$branch" == master ]]; then
+    if [[ "$branch" == trunk ]]; then
         ./bin/notify-slack --upload "flagged-annotations" < "$flagged_annotations"
         ./bin/notify-on-metadata-change data/gisaid/metadata.tsv "$S3_SRC/metadata.tsv.gz" gisaid_epi_isl
         ./bin/notify-on-additional-info-change data/gisaid/additional_info.tsv "$S3_SRC/additional_info.tsv.gz"
