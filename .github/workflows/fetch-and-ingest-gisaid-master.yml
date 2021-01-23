@@ -32,5 +32,12 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         GISAID_API_ENDPOINT: ${{ secrets.GISAID_API_ENDPOINT }}
         GISAID_USERNAME_AND_PASSWORD: ${{ secrets.GISAID_USERNAME_AND_PASSWORD }}
+        SLACK_CHANNELS: "#covid19nextstrain"
+        AWS_BATCH_QUEUE: nextstrain-job-queue
+        AWS_BATCH_S3_BUCKET: ${{ secrets.BATCH_S3_BUCKET }}
+        CPUS: 96
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        GH_USERNAME: ${{ secrets.GH_USERNAME }}
+        S3_SRC: ${{ secrets.S3_PREFIX }}
         SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
-        SLACK_CHANNELS: ncov-gisaid-updates
+        MEMORY: 126GiB

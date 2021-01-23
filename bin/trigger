@@ -30,7 +30,7 @@ which will then not require you to type your password every time.
     exit 1
 fi
 
-if curl -fsS https://api.github.com/repos/nextstrain/ncov-ingest/dispatches \
+if curl -fsS https://api.github.com/repos/czbiohub/ncov-ingest/dispatches \
     -H 'Accept: application/vnd.github.v3+json' \
     -H 'Content-Type: application/json' \
     -d '{"event_type":"'"$event_type"'"}' \
